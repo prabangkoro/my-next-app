@@ -1,7 +1,24 @@
 import React from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
-import Nav from '../components/nav'
+import Link from 'next/link'
+
+const userIds = ['a', '123', 'uuu-jijsdodf-ojiwoer213-123']
+
+function UserLinks () {
+  return (
+    <ul>
+      {
+        userIds.map((id, index) => (
+          <li key={index}>
+            <Link href='/user/[id]' as={`/user/${id}`}>
+              <a>User {id}</a>
+            </Link>
+          </li>
+        ))
+      }
+    </ul>
+  )
+}
 
 const Home = () => (
   <div>
@@ -9,32 +26,26 @@ const Home = () => (
       <title>Home</title>
     </Head>
 
-    <Nav />
-
     <div className='hero'>
       <h1 className='title'>Welcome to Next.js!</h1>
       <p className='description'>
         To get started, edit <code>pages/index.js</code> and save to reload.
       </p>
 
-      <div className='row'>
-        <Link href='https://github.com/zeit/next.js#setup'>
-          <a className='card'>
-            <h3>Getting Started &rarr;</h3>
-            <p>Learn more about Next.js on GitHub and in their examples.</p>
-          </a>
-        </Link>
-        <Link href='https://github.com/zeit/next.js/tree/master/examples'>
-          <a className='card'>
-            <h3>Examples &rarr;</h3>
-            <p>Find other example boilerplates on the Next.js GitHub.</p>
-          </a>
-        </Link>
-        <Link href='https://github.com/zeit/next.js'>
-          <a className='card'>
-            <h3>Create Next App &rarr;</h3>
-            <p>Was this tool helpful? Let us know how we can improve it!</p>
-          </a>
+      <div>
+        <h3>Static image loading</h3>
+        <img src='/static/beautiful-boardwalk-dawn-247314.jpg'></img>
+      </div>
+
+      <div>
+        <h3>Dynamic Routing</h3>
+        <UserLinks />
+      </div>
+
+      <div>
+        <h3>Initial Data Population</h3>
+        <Link href='/agent'>
+          <a>Page</a>
         </Link>
       </div>
     </div>
